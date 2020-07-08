@@ -109,3 +109,22 @@ for key in data_dict:
         
 print('Excersied stock options max: ', max(stock),' min: ', min(stock))
 print('Salary max: ', max(salary),' min: ', min(salary))
+
+
+##Feature_Scaling
+
+from sklearn.preprocessing import MinMaxScaler
+
+scaler = MinMaxScaler()
+feature_1 = "salary"
+feature_2 = "exercised_stock_options"
+poi  = "poi"
+features_list = [poi, feature_1, feature_2]
+data = featureFormat(data_dict, features_list )
+poi, finance_features = targetFeatureSplit( data )
+
+
+scaler.fit(finance_features)
+print(scaler.transform([[200000.0,1000000]]))
+for key in data_dict:
+    print(data_dict[key]['from_messages']) ##yes scaling is required 
