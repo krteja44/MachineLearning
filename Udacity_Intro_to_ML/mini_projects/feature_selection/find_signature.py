@@ -3,13 +3,14 @@
 import pickle
 import numpy
 numpy.random.seed(42)
+import numpy as np
 
 
 ### The words (features) and authors (labels), already largely processed.
 ### These files should have been created from the previous (Lesson 10)
 ### mini-project.
-words_file = "./word_data.pkl" 
-authors_file = "./email_authors.pkl"
+words_file = "../text_learning/your_word_data.pkl" 
+authors_file = "../text_learning/your_email_authors.pkl"
 word_data = pickle.load( open(words_file, "rb"))
 authors = pickle.load( open(authors_file, "rb") )
 
@@ -45,4 +46,6 @@ clf = DecisionTreeClassifier()
 clf.fit(features_train, labels_train)
 print('accuracy score: ', accuracy_score(labels_test,clf.predict(features_test) ))
 
-
+for i in range(0,len(clf.feature_importances_)):
+    if clf.feature_importances_[i] > 0.2:
+        print(i, clf.feature_importances_[i])
